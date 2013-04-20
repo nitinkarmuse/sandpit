@@ -24,7 +24,13 @@ class Emote {
 		this.expressions = expressions;
 		this.title = title;
 	}
+	@Override
+	public String toString() {
+		return "Emote [id=" + id + ", userId=" + userId + ", topics=" + topics
+				+ ", expressions=" + expressions + ", title=" + title + "]";
+	}
 	
+
 
 	
 

@@ -1,6 +1,7 @@
 package sandpit
 
 class EmoteController {
+	EmoteService emoteService
 
     def create() {
 		
@@ -15,21 +16,16 @@ class EmoteController {
 		Emote emote = new Emote(session.user.id, topics, expressions, title)
 		
 		emote.save()
-		render ("your savaed emote  as "+ emote.id)
+		render ("your saved emote  as "+ emote.id)
 	}
 	
 	def search(){
 		
-		def c = Emote.createCriteria()
-		
-//		println "criterai created"
-//		def results = c.list{
-//			sqlRestriction "find{ topics:\""+params.topic+"\"}"
-//			
+//		def query = Emote.where{
+//			topics == params.topic
 //		}
-//		println "got results ${results}"
-		
-		def results = Emote.findWhere("{topics : 'topic1'}")
+//		def results = query.find()
+		def results = emoteService.searchByTopic(params.topic)
 		println "got results ${results}"
 
 		[emotes:results]
